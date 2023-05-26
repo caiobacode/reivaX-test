@@ -1,0 +1,20 @@
+version: '3.3'
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: api.Dockerfile
+      target: api
+    image: api
+    container_name: $API_CONTAINER
+    environment:
+      API_SECRET_KEY: $API_SECRET_KEY
+      JWT_SECRET_KEY: $JWT_SECRET_KEY
+      JWT_ACCESS_TOKEN_EXPIRES: $JWT_ACCESS_TOKEN_EXPIRES
+      JWT_REFRESH_TOKEN_EXPIRES: $JWT_REFRESH_TOKEN_EXPIRES
+      ASYNC_MODE: gevent
+    volumes:
+      - ./api:/usr/src/app
+    ports:
+      - 5000:5000
