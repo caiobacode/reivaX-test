@@ -1,12 +1,18 @@
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { loginUser } from '../redux/userSlice';
 
 export default function LoginForm() {
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+  const dispatch = useDispatch();
 
   const handleClick = () => {
-    console.log('login');
-  }
+    setUsername('')
+    setPassword('')
+    dispatch(loginUser({username, password}))
+  };
 
   return (
     <div>
