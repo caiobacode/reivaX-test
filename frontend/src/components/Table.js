@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Table({data}) {
+export default function Table() {
   return (
     <div>
       <table>
@@ -11,16 +11,16 @@ export default function Table({data}) {
           <th>Date</th>
         </tr>
         {
-          data.map((d) => {
-            return (
-              <tr>
-                <td>{d.type}</td>
-                <td>{d.param1}</td>
-                <td>{d.param2}</td>
-                <td>{d.timestamp}</td>
-              </tr>
-            )
-          })
+          // data.map((d) => {
+          //   return (
+          //     <tr>
+          //       <td>{d.type}</td>
+          //       <td>{d.param1}</td>
+          //       <td>{d.param2}</td>
+          //       <td>{d.timestamp}</td>
+          //     </tr>
+          //   )
+          // })
         }
       </table>
     </div>
