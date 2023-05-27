@@ -1,7 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import Table from './components/Table';
 import io from 'socket.io-client';
 
 const App = () => {
+  const [data, setData] = useState([])
+
   useEffect(() => {
     const socket = io('http://localhost:5000/api', {
       extraHeaders: {
@@ -9,6 +12,7 @@ const App = () => {
         'X-Password': 'user'
       }
     });
+
     socket.on('connect', () => {
       console.log('Conectado ao servidor Socket.IO');
     });
@@ -19,8 +23,9 @@ const App = () => {
     })
 
     // atende evento "data" e printa os dados
-    socket.on('data', (data) => {
-      console.log('data:', data);
+    socket.on('data', (dataArray) => {
+      setData(dataArray)
+      console.log('data:', dataArray);
     })
 
     return () => {
@@ -32,6 +37,7 @@ const App = () => {
   return (
     <div className="App">
       ReivaX
+      <Table data={data}/>
     </div>
   );
 }
