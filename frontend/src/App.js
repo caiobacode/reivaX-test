@@ -1,12 +1,10 @@
 import React, { useEffect } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
-import Login from './pages/Login';
-import Home from './pages/Home';
-import io from 'socket.io-client';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectUser, setUserToConnected } from './redux/userSlice';
-import { setData } from './redux/tableSlice';
-import { setLocalStorage } from './utils/localStorage';
+import io from 'socket.io-client';
+import { Login, Home } from './pages';
+import { selectUser, setUserToConnected, setData } from './redux';
+import { getLocalStorage, setLocalStorage } from './utils/localStorage';
 
 const App = () => {
   const navigate = useNavigate();
@@ -27,9 +25,10 @@ const App = () => {
       dispatch(setUserToConnected());
     });
 
-    // esse "if" é necessário para evitar requisições duplas
-    if (user.isConnected) {
-      // atende evento "credentials" e armazena os tokens no localStorage
+    const token = getLocalStorage('token', false)
+    // esse "if" é necessário para evitar requisições desnecessarias
+    if (user.isConnected && !token) {
+      // armazena os tokens no localStorage somente se não existir nenhum token
       socket.on('credentials', (data) => {
         setLocalStorage('token', data.access_token);
         setLocalStorage('refresh-token', data.refresh_token);

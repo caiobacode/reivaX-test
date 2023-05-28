@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { loginUser } from '../redux/userSlice';
+import { loginUser } from '../redux';
 
 export default function LoginForm() {
   const [username, setUsername] = useState('');
