@@ -6,15 +6,11 @@ export default function PageSelector() {
   const { data, actualPage } = useSelector(selectTable);
   const dispatch = useDispatch();
 
-  const switchPage = (newPage) => {
-    dispatch(changePage(newPage))
-  };
-
   return (
     <div>
       <button
         type='button'
-        onClick={() => switchPage(actualPage - 1)}
+        onClick={() => dispatch(changePage(actualPage - 1))}
         disabled={actualPage - 1 === 0}
       >
         Previous page
@@ -22,7 +18,7 @@ export default function PageSelector() {
       <span>{actualPage}</span>
       <button
         type='button'
-        onClick={() => switchPage(actualPage + 1)}
+        onClick={() => dispatch(changePage(actualPage + 1))}
         disabled={actualPage * 20 + 1 > data.length}
       >
         Next page
