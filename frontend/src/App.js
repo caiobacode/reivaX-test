@@ -8,8 +8,9 @@ import { getLocalStorage, setLocalStorage } from './utils/localStorage';
 
 const App = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const user = useSelector(selectUser);
-  const dispatch = useDispatch()
 
   useEffect(() => {
     const socket = io('http://localhost:5000/api', {
