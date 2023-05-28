@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import io from 'socket.io-client';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectUser, setUserToConnected } from './redux/userSlice';
+import { setData } from './redux/tableSlice';
 import { setLocalStorage } from './utils/localStorage';
 
 const App = () => {
@@ -28,17 +29,17 @@ const App = () => {
 
     // esse "if" é necessário para evitar requisições duplas
     if (user.isConnected) {
-      // atende evento "credentials" e printa os tokens
+      // atende evento "credentials" e armazena os tokens no localStorage
       socket.on('credentials', (data) => {
         setLocalStorage('token', data.access_token);
         setLocalStorage('refresh-token', data.refresh_token);
       });
-
-      // atende evento "data" e printa os dados
-      socket.on('data', (dataArray) => {
-        console.log('data:', dataArray);
-      });
     }
+
+    // atende evento "data" e armazena os dados no redux
+    socket.on('data', (data) => {
+      dispatch(setData(data));
+    });
 
     return () => {
       socket.disconnect(); // Desconecta quando o componente for desmontado

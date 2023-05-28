@@ -9,9 +9,9 @@ export default function LoginForm() {
   const dispatch = useDispatch();
 
   const handleClick = () => {
+    dispatch(loginUser({username, password}))
     setUsername('')
     setPassword('')
-    dispatch(loginUser({username, password}))
   };
 
   return (
