@@ -5,19 +5,13 @@ export const slice = createSlice({
   initialState: {
     username: '',
     password: '',
-    isConnected: false,
   },
   reducers: {
     loginUser (state, { payload }) {
       return { ...state, ...payload };
     },
-    setUserToConnected (state) {
-      if (!state.isConnected) {
-        return { ...state, isConnected: true };
-      }
-    },
     logoutUser () { 
-      return { username: '', password: '', isConnected: false }; 
+      return { username: '', password: '' }; 
     }
   }
 });

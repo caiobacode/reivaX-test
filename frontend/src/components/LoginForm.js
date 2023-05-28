@@ -1,17 +1,20 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { loginUser } from '../redux';
+import { useNavigate } from 'react-router-dom';
 
 export default function LoginForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleClick = () => {
-    dispatch(loginUser({username, password}));
     setUsername('');
     setPassword('');
+    navigate('/home')
+    dispatch(loginUser({username, password}));
   };
 
   return (
