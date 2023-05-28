@@ -4,7 +4,8 @@ export const slice = createSlice({
   name: 'table',
   initialState: {
     data: [],
-    actualPage: 1
+    actualPage: 1,
+    clearTable: false
   },
   reducers: {
     setData (state, { payload }) {
@@ -12,11 +13,14 @@ export const slice = createSlice({
     },
     changePage (state, { payload }) {
       return { ...state, actualPage: payload };
+    },
+    setClearTable (state, { payload }) {
+      return { ...state, clearTable: payload };
     }
   }
 });
 
-export const { setData, changePage } = slice.actions;
+export const { setData, changePage, setClearTable } = slice.actions;
 
 export const selectTable = state => state.table;
 

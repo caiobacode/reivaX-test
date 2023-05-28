@@ -3,7 +3,7 @@ import { Route, Routes, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import io from 'socket.io-client';
 import { Login, Home } from './pages';
-import { selectUser, setUserToConnected, setData } from './redux';
+import { selectUser, setUserToConnected, setData, selectTable, setClearTable } from './redux';
 import { getLocalStorage, setLocalStorage } from './utils/localStorage';
 
 const App = () => {
@@ -11,6 +11,7 @@ const App = () => {
   const dispatch = useDispatch();
 
   const user = useSelector(selectUser);
+  const { clearTable } = useSelector(selectTable)
 
   useEffect(() => {
     const socket = io('http://localhost:5000/api', {
@@ -19,14 +20,20 @@ const App = () => {
         'X-Password': user.password
       }
     });
-
+    
     socket.on('connect', () => {
       console.log('Conectado ao servidor Socket.IO');
-      navigate('/home');
       dispatch(setUserToConnected());
     });
-
+    
     const token = getLocalStorage('token', false);
+    if (clearTable === true) {
+      socket.emit('clear', { token });
+      dispatch(setData([]))
+      setTimeout(() => {
+        dispatch(setClearTable(false))
+      }, 200)
+    }
     // esse "if" é necessário para evitar requisições desnecessarias
     if (user.isConnected && !token) {
       // armazena os tokens no localStorage somente se não existir nenhum token
@@ -44,7 +51,7 @@ const App = () => {
     return () => {
       socket.disconnect(); // Desconecta quando o componente for desmontado
     };
-  }, [user, navigate, dispatch]);
+  }, [user, navigate, dispatch, clearTable]);
 
 
   return (

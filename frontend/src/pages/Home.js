@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import Table from '../components/Table';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { loginUser } from '../redux';
+import { loginUser, setClearTable } from '../redux';
 import { getLocalStorage, decodeToken } from '../utils';
 import PageSelector from '../components/PageSelector';
 
@@ -26,8 +26,16 @@ export default function Home() {
 
   return (
     <div>
+      <div>
+        <button
+          type='button'
+          onClick={() => dispatch(setClearTable(true))}
+        >
+          Clear
+        </button>
+        <PageSelector />
+      </div>
       <Table />
-      <PageSelector />
     </div>
   )
 }
