@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react'
-import LoginForm from '../components/LoginForm'
+import React, { useEffect } from 'react';
+import LoginForm from '../components/LoginForm';
 import { useDispatch } from 'react-redux';
 import { decodeToken, getLocalStorage } from '../utils';
 import { loginUser } from '../redux';
@@ -14,9 +14,9 @@ export default function Login() {
     decodifica o token e conecta ao servidor socket.io */
     if (tokenDecoded !== false) {
       const { sub } = tokenDecoded;
-      dispatch(loginUser({ username: sub, password: sub }))
+      dispatch(loginUser({ username: sub, password: sub }));
     }
-  }, [token, dispatch])
+  }, [token, dispatch]);
 
   return (
     <div>

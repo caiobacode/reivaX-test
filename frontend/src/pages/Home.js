@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react'
-import Table from '../components/Table'
-import { useNavigate } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
-import { loginUser } from '../redux'
-import { getLocalStorage, decodeToken } from '../utils'
+import React, { useEffect } from 'react';
+import Table from '../components/Table';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { loginUser } from '../redux';
+import { getLocalStorage, decodeToken } from '../utils';
 
 export default function Home() {
   const navigate = useNavigate();
@@ -19,9 +19,9 @@ export default function Home() {
       /* se já existir um token no local storage, a aplicação 
       decodifica o token e conecta ao servidor socket.io */
       const { sub } = tokenDecoded;
-      dispatch(loginUser({ username: sub, password: sub }))
+      dispatch(loginUser({ username: sub, password: sub }));
     }
-  }, [token, dispatch, navigate])
+  }, [token, dispatch, navigate]);
 
   return (
     <div>

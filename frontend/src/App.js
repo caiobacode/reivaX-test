@@ -26,7 +26,7 @@ const App = () => {
       dispatch(setUserToConnected());
     });
 
-    const token = getLocalStorage('token', false)
+    const token = getLocalStorage('token', false);
     // esse "if" é necessário para evitar requisições desnecessarias
     if (user.isConnected && !token) {
       // armazena os tokens no localStorage somente se não existir nenhum token
@@ -44,7 +44,7 @@ const App = () => {
     return () => {
       socket.disconnect(); // Desconecta quando o componente for desmontado
     };
-  }, [user, navigate, dispatch])
+  }, [user, navigate, dispatch]);
 
 
   return (

@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { loginUser } from '../redux';
 
 export default function LoginForm() {
@@ -9,9 +9,9 @@ export default function LoginForm() {
   const dispatch = useDispatch();
 
   const handleClick = () => {
-    dispatch(loginUser({username, password}))
-    setUsername('')
-    setPassword('')
+    dispatch(loginUser({username, password}));
+    setUsername('');
+    setPassword('');
   };
 
   return (
