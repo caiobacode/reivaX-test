@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { loginUser } from '../redux';
 import { getLocalStorage, decodeToken } from '../utils';
+import PageSelector from '../components/PageSelector';
 
 export default function Home() {
   const navigate = useNavigate();
@@ -26,6 +27,7 @@ export default function Home() {
   return (
     <div>
       <Table />
+      <PageSelector />
     </div>
   )
 }
