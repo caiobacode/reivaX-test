@@ -36,7 +36,7 @@ const App = () => {
     });
 
     /* quando o usuario apertar o botao "clear", o boleano clearTable
-    passa a ser true, assim emitindo o comando "clear"*/
+    passa a ser true, assim emitindo o comando "clear" para o servidor*/
     if (clearTable === true) {
       const token = getLocalStorage('token', false);
       socket.emit('clear', { token }, (response) => {
@@ -57,7 +57,7 @@ const App = () => {
 
     return () => {
       clearInterval(interval);
-      socket.disconnect(); // Desconecta quando o componente for desmontado
+      socket.disconnect();
     };
   }, [user, clearTable]);
 
