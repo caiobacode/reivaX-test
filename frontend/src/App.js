@@ -35,16 +35,15 @@ const App = () => {
       dispatch(setData(data));
     });
 
-    const token = getLocalStorage('token', false);
+    /* quando o usuario apertar o botao "clear", o boleano clearTable
+    passa a ser true, assim emitindo o comando "clear"*/
     if (clearTable === true) {
+      const token = getLocalStorage('token', false);
       socket.emit('clear', { token }, (response) => {
-        console.log('Retorno do comando "clear":', response);
-      });
-      dispatch(setData([]));
-      dispatch(changePage(1))
-      setTimeout(() => {
+        dispatch(setData([]));
+        dispatch(changePage(1))
         dispatch(setClearTable(false));
-      }, 500)
+      });
     }
 
     // a cada 445 segundos, faremos uma requisicao para atualizar os tokens
