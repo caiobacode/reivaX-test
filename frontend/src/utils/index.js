@@ -1,5 +1,11 @@
-import { decodeToken } from "./decodeToken";
+import { validateRefreshToken, validateAccessToken } from "./validateTokens";
 import { getLocalStorage, setLocalStorage } from "./localStorage";
 import { getDataFromActualPage } from "./getDataFromActualPage";
 
-export { decodeToken, getLocalStorage, setLocalStorage, getDataFromActualPage };
+export { 
+  validateRefreshToken, 
+  validateAccessToken, 
+  getLocalStorage, 
+  setLocalStorage, 
+  getDataFromActualPage 
+};
