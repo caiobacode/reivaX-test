@@ -21,13 +21,14 @@ const App = () => {
     }
     });
 
+    // função para verificar se o usuario ja esta logado ao entrar no site
     function verifyTokens() {
       const isValid = validateRefreshToken(user, dispatch);
       const actualRoute = window.location.pathname;
       if (isValid && actualRoute !== '/home') {
         navigate('/home');
       } 
-      if (!isValid && actualRoute !== ('/login' || '/')) {
+      if (!isValid && actualRoute === '/home') {
         navigate('/login');
       }
     }
@@ -55,18 +56,16 @@ const App = () => {
     if (clearTable === true) {
       const token = getLocalStorage('token', false);
       socket.emit('clear', { token }, (response) => {
-        console.log(response);
         dispatch(setData([]));
         dispatch(changePage(1))
         dispatch(setClearTable(false));
       });
     }
 
-    // a cada 450 segundos, faremos uma requisicao para atualizar os tokens
+    // a cada 450 segundos, envia-se uma requisicao para atualizar os tokens
     const interval = setInterval(() => {
       const refreshToken = getLocalStorage('refresh-token', false)
       socket.emit('refresh_tokens', { token: refreshToken }, (response) => {
-        console.log(response);
         setLocalStorage('token', response.access_token);
         setLocalStorage('refresh-token', response.refresh_token)
       });
