@@ -64,8 +64,9 @@ const App = () => {
 
     // a cada 450 segundos, envia-se uma requisicao para atualizar os tokens
     const interval = setInterval(() => {
-      const refreshToken = getLocalStorage('refresh-token', false)
+      let refreshToken = getLocalStorage('refresh-token', false)
       socket.emit('refresh_tokens', { token: refreshToken }, (response) => {
+        refreshToken = response.refresh_token;
         setLocalStorage('token', response.access_token);
         setLocalStorage('refresh-token', response.refresh_token)
       });
