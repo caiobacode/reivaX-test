@@ -15,11 +15,13 @@ export default function PageSelector() {
       >
         Previous page
       </button>
+
       <span>{actualPage}</span>
+
       <button
         type='button'
         onClick={() => dispatch(changePage(actualPage + 1))}
-        disabled={actualPage * 20 + 1 > data.length}
+        disabled={actualPage * 20 + 1 > data.length} // desabilita se não tiver items suficiente para a próxima página
       >
         Next page
       </button>
