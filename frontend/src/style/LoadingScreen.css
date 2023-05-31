@@ -1,0 +1,43 @@
+.loading-screen-on, .loading-screen-off {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  background-color: #D30D33;
+}
+
+.loading-screen-on {
+  opacity: 1;
+  z-index: 1;
+  transition: 400ms ease-in-out;
+}
+
+.loading-screen-off {
+  filter: blur(5px);
+  opacity: 0;
+  z-index: -1;
+  transition: 500ms ease-in-out;
+}
+
+.loading-img-text-div {
+  background-color: #FFFFFF;
+  width: 500px;
+  height: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 22px;
+}
+
+.reivax-loading-screen {
+  width: 300px;
+  margin-top: 40px;
+}
+
+.loading-span {
+  font-size: 35px;
+  margin-top: 40px;
+  font-family: regularFont;
+}

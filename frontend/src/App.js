@@ -3,7 +3,18 @@ import { Route, Routes, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import io from 'socket.io-client';
 import { Login, Home } from './pages';
-import { selectUser, setData, selectTable, setClearTable, changePage } from './redux';
+import { LoadingScreen } from './components';
+
+import { 
+  setData, 
+  setClearTable, 
+  changePage, 
+  turnOffLoadingScreen, 
+  turnOnLoadingScreen, 
+  selectUser, 
+  selectTable,
+} from './redux';
+
 import { getLocalStorage, setLocalStorage, validateAccessToken, validateRefreshToken } from './utils';
 import './style/App.css'
 
@@ -12,7 +23,7 @@ const App = () => {
   const navigate = useNavigate();
 
   const user = useSelector(selectUser);
-  const { clearTable } = useSelector(selectTable)
+  const { clearTable } = useSelector(selectTable);
 
   useEffect(() => {
     const socket = io('http://localhost:5000/api', {
@@ -22,21 +33,30 @@ const App = () => {
       }
     });
 
-    function verifyTokens() {
+    function verifyAuthentication() {
       const isTokenValid = validateRefreshToken(user, dispatch);
       const actualRoute = window.location.pathname;
       if (isTokenValid && actualRoute !== '/home') {
-        navigate('/home');
+        dispatch(turnOnLoadingScreen());
+        setTimeout(() => {
+          navigate('/home');
+        }, 500)
       } 
       if (!isTokenValid && actualRoute === '/home') {
-        navigate('/login');
+        dispatch(turnOnLoadingScreen());
+        setTimeout(() => {
+          navigate('/login');
+        }, 500)
       }
+      setTimeout(() => {
+        dispatch(turnOffLoadingScreen());
+      }, 1000)
     }
 
     // temos que colocar um delay pequeno, se não nós não conseguimos logar
     setTimeout(() => {
-      verifyTokens();
-    }, 100) 
+      verifyAuthentication();
+    }, 100)
     
     socket.on('credentials', ({ access_token, refresh_token }) => {
       if (!validateAccessToken()) {
@@ -76,11 +96,14 @@ const App = () => {
   }, [user, clearTable]);
 
   return (
-    <Routes>
-      <Route Component={Login} exact path='/'></Route>
-      <Route Component={Login} path='/login'></Route>
-      <Route Component={Home} path='/home'></Route>
-    </Routes>
+    <div>
+      <LoadingScreen />
+      <Routes>
+        <Route Component={Login} exact path='/'></Route>
+        <Route Component={Login} path='/login'></Route>
+        <Route Component={Home} path='/home'></Route>
+      </Routes>
+    </div>
   );
 }
 
