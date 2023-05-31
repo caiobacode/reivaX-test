@@ -5,9 +5,10 @@ import { changePage, turnFiltersWindowOff } from '../redux';
 import { applyNewFilters, selectFilters } from '../redux/filtersSlice';
 
 export default function Filters() {
-  const { typeFilter } = useSelector(selectFilters);
+  const { typeFilter, param1Filter } = useSelector(selectFilters);
 
   const [typesSelected, setTypesSelected] = useState(typeFilter);
+  const [param1Range, setParam1Range] = useState(param1Filter);
 
   const dispatch = useDispatch();
 
@@ -22,9 +23,20 @@ export default function Filters() {
     }
   };
 
+  const handleChangeParam1 = ({ target }) => {
+    const { value, name } = target;
+    const isNumber = isNaN(Number(value));
+
+    if (!isNumber) {
+      const newRange = { ...param1Range, [name]: value };
+      setParam1Range(newRange); 
+    }
+  };
+
   const applyFilters = () => {
     const newFilters = {
-      typeFilter: typesSelected
+      typeFilter: typesSelected,
+      param1Filter: param1Range,
     }
     dispatch(applyNewFilters(newFilters));
     dispatch(turnFiltersWindowOff());
@@ -39,6 +51,7 @@ export default function Filters() {
       >
         Close
       </button>
+
       <div>
         <h3>Types</h3>
         <label htmlFor='type1' >
@@ -48,8 +61,7 @@ export default function Filters() {
             value='type1'
             checked={typesSelected.includes('type1')}
             onChange={handleCheckType}
-          >
-          </input>
+          />
           Type1
         </label>
 
@@ -60,8 +72,7 @@ export default function Filters() {
             value='type2'
             checked={typesSelected.includes('type2')}
             onChange={handleCheckType}
-          >
-          </input>
+          />
           Type2
         </label>
 
@@ -72,11 +83,33 @@ export default function Filters() {
             value='type3'
             checked={typesSelected.includes('type3')}
             onChange={handleCheckType}
-          >
-          </input>
+          />
           Type3
         </label>
       </div>
+
+      <div>
+        <h3>Param1</h3>
+        <label htmlFor='greater-than-input-1'>
+          Between
+          <input
+            name='greaterThanNumber'
+            type='text'
+            value={param1Range.greaterThanNumber}
+            onChange={handleChangeParam1}
+          />
+        </label>
+        <label htmlFor='less-than-input-1'>
+          And
+          <input
+            name='lessThanNumber'
+            type='text'
+            value={param1Range.lessThanNumber || ''}
+            onChange={handleChangeParam1}
+          />
+        </label>
+      </div>
+
       <button
         type='button'
         onClick={applyFilters}

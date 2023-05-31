@@ -5,6 +5,14 @@ export const slice = createSlice({
   initialState: {
     showFiltersWindow: false,
     typeFilter: ['type1', 'type2', 'type3'],
+    param1Filter: {
+      lessThanNumber: null,
+      greaterThanNumber: 0
+    },
+    param2Filter: {
+      lessThanNumber: null,
+      greaterThanNumber: 0
+    }
   },
   reducers: {
     turnFiltersWindowOn (state, { payload }) {

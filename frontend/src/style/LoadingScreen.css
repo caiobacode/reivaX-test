@@ -41,3 +41,21 @@
   margin-top: 40px;
   font-family: regularFont;
 }
+
+.loading-spinner {
+  animation: is-rotating 1.3s infinite;
+  border: 6px solid #e5e5e5;
+  border-radius: 50%;
+  border-top-color: #D30D33;
+  height: 40px;
+  margin: 0 auto;
+  margin-top: 40px;
+  width: 40px;
+}
+
+@keyframes is-rotating {
+
+  to {
+    transform: rotate(1turn);
+  }
+}

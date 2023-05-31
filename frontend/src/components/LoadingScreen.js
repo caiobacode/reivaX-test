@@ -11,7 +11,7 @@ export default function LoadingScreen() {
     <div className={divClassName}>
       <div className='loading-img-text-div'>
         <img className='reivax-loading-screen' src={reivaxImg} alt='reivax'/>
-        <span className='loading-span'>Loading ...</span>
+        <div className='loading-spinner'/>
       </div>
     </div>
   )

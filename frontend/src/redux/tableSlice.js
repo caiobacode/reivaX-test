@@ -4,7 +4,6 @@ export const slice = createSlice({
   name: 'table',
   initialState: {
     data: [],
-    dataLengthWithFilters: 0,
     filteredDataLength: 0,
     actualPage: 1,
     clearTable: false
