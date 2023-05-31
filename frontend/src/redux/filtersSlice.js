@@ -7,11 +7,11 @@ export const slice = createSlice({
     typeFilter: ['type1', 'type2', 'type3'],
     param1Filter: {
       lessThanNumber: null,
-      greaterThanNumber: 0
+      greaterThanNumber: null
     },
     param2Filter: {
       lessThanNumber: null,
-      greaterThanNumber: 0
+      greaterThanNumber: null
     }
   },
   reducers: {

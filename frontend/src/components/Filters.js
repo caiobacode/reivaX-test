@@ -5,10 +5,11 @@ import { changePage, turnFiltersWindowOff } from '../redux';
 import { applyNewFilters, selectFilters } from '../redux/filtersSlice';
 
 export default function Filters() {
-  const { typeFilter, param1Filter } = useSelector(selectFilters);
+  const { typeFilter, param1Filter, param2Filter } = useSelector(selectFilters);
 
   const [typesSelected, setTypesSelected] = useState(typeFilter);
   const [param1Range, setParam1Range] = useState(param1Filter);
+  const [param2Range, setParam2Range] = useState(param2Filter);
 
   const dispatch = useDispatch();
 
@@ -33,10 +34,21 @@ export default function Filters() {
     }
   };
 
+  const handleChangeParam2 = ({ target }) => {
+    const { value, name } = target;
+    const isNumber = isNaN(Number(value));
+
+    if (!isNumber) {
+      const newRange = { ...param2Range, [name]: value };
+      setParam2Range(newRange); 
+    }
+  };
+
   const applyFilters = () => {
     const newFilters = {
       typeFilter: typesSelected,
       param1Filter: param1Range,
+      param2Filter: param2Range
     }
     dispatch(applyNewFilters(newFilters));
     dispatch(turnFiltersWindowOff());
@@ -90,22 +102,44 @@ export default function Filters() {
 
       <div>
         <h3>Param1</h3>
-        <label htmlFor='greater-than-input-1'>
+        <label>
           Between
           <input
             name='greaterThanNumber'
             type='text'
-            value={param1Range.greaterThanNumber}
+            value={param1Range.greaterThanNumber || ''}
             onChange={handleChangeParam1}
           />
         </label>
-        <label htmlFor='less-than-input-1'>
+        <label>
           And
           <input
             name='lessThanNumber'
             type='text'
             value={param1Range.lessThanNumber || ''}
             onChange={handleChangeParam1}
+          />
+        </label>
+      </div>
+
+      <div>
+        <h3>Param2</h3>
+        <label>
+          Between
+          <input
+            name='greaterThanNumber'
+            type='text'
+            value={param2Range.greaterThanNumber || ''}
+            onChange={handleChangeParam2}
+          />
+        </label>
+        <label>
+          And
+          <input
+            name='lessThanNumber'
+            type='text'
+            value={param2Range.lessThanNumber || ''}
+            onChange={handleChangeParam2}
           />
         </label>
       </div>
