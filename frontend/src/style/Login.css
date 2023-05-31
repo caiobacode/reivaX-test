@@ -25,12 +25,14 @@
 .input-label {
   margin-top: 15px;
   font-size: 16px;
+  font-family: semiboldFont;
 }
 
 .login-input {
   margin-top: 5px;
   width: 200px;
   font-size: 14px;
+  font-family: regularFont;
   height: 30px;
   border: #a6a6a6 solid 1px;
   border-radius: 5px;
@@ -51,6 +53,7 @@
   margin-top: 15px;
   box-sizing: border-box;
   padding: 20px;
+  font-family: regularFont;
   color: #ff0000;
   height: 30px;
   display: flex;
@@ -61,6 +64,7 @@
 .login-btn {
   width: 170px;
   font-size: 16px;
+  font-family: boldFont;
   height: 40px;
   margin-top: 20px;
   border: none;
