@@ -1,0 +1,27 @@
+.content-table {
+  width: 800px;
+  border-collapse: collapse;
+  background-color: white;
+  text-align: center;
+}
+
+.content-table thead tr {
+  background-color: #D30D33;
+}
+
+.content-table th {
+  font-family: semiboldFont;
+  color: white;
+  height: 50px;
+}
+
+.content-table tr {
+  border-bottom: solid black 1px;
+  border-color: #666666;
+}
+
+.content-table td {
+  padding: 6px 15px;
+  font-size: 14px;
+  font-family: regularFont;
+}
