@@ -3,6 +3,7 @@
   border-collapse: collapse;
   text-align: center;
   background-color: #333333;
+  margin-bottom: 50px;
 }
 
 .content-table thead tr {
@@ -26,4 +27,28 @@
   font-size: 14px;
   color: white;
   font-family: regularFont;
+}
+
+@media(max-width: 800px) {
+  .content-table {
+    width: 100%
+  }
+
+  .content-table th {
+    width: 25%;
+    font-size: 14px;
+  }
+
+  .content-table td {
+    padding: 4px 5px;
+    font-size: 10px;
+    color: white;
+    font-family: regularFont;
+  }
+}
+
+@media(max-width: 500px) {
+  .content-table td {
+    font-size: 8px;
+  }
 }

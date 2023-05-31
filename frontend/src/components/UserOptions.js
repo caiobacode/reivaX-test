@@ -31,7 +31,7 @@ export default function UserOptions() {
           Logout
         </button>
       </div>
-      <div className='page-delector-div'>
+      <div className='page-selector-div'>
         <span className='change-page-span'>Change page</span>
         <PageSelector/>
       </div>
