@@ -6,7 +6,7 @@ import nextImg from '../media/next.png';
 import '../style/PageSelector.css';
 
 export default function PageSelector() {
-  const { data, actualPage } = useSelector(selectTable);
+  const { actualPage, filteredDataLength } = useSelector(selectTable);
   const dispatch = useDispatch();
 
   return (
@@ -30,7 +30,7 @@ export default function PageSelector() {
         type='button'
         className='change-page-btn'
         onClick={() => dispatch(changePage(actualPage + 1))}
-        disabled={actualPage * 20 + 1 > data.length} // desabilita se não tiver items suficiente para a próxima página
+        disabled={actualPage * 20 + 1 > filteredDataLength} // desabilita se não tiver items suficiente para a próxima página
       >
         <img 
           className='change-page-btn-img' 

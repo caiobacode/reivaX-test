@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../style/Filters.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { turnFiltersWindowOff } from '../redux';
+import { changePage, turnFiltersWindowOff } from '../redux';
 import { applyNewFilters, selectFilters } from '../redux/filtersSlice';
 
 export default function Filters() {
@@ -28,6 +28,7 @@ export default function Filters() {
     }
     dispatch(applyNewFilters(newFilters));
     dispatch(turnFiltersWindowOff());
+    dispatch(changePage(1));
   }
 
   return (

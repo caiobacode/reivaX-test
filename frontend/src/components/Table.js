@@ -1,15 +1,25 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import { selectTable, selectFilters } from '../redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectTable, selectFilters, setFilteredDataLength } from '../redux';
 import { applyFilters, formatDate, getDataFromActualPage } from '../utils';
 import '../style/Table.css'
 
 export default function Table() {
-  const { data, actualPage } = useSelector(selectTable);
+  const { data, actualPage, filteredDataLength } = useSelector(selectTable);
   const filters = useSelector(selectFilters);
+
+  const dispatch = useDispatch();
 
   const dataFiltered = applyFilters(data, filters);
   const dataFromActualPage = getDataFromActualPage(dataFiltered, actualPage);
+
+  useEffect(() => {
+    // colocamos esse "if" para evitar loops
+    if (filteredDataLength !== dataFiltered.length) {
+      dispatch(setFilteredDataLength(dataFiltered.length))
+    }
+  }, [dataFiltered, filteredDataLength, dispatch])
+
   return (
     <table className='content-table'>
       <thead>
