@@ -3,6 +3,7 @@ import '../style/Filters.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { changePage, turnFiltersWindowOff } from '../redux';
 import { applyNewFilters, clearFilters, selectFilters } from '../redux/filtersSlice';
+import closeImg from '../media/close.png'
 
 export default function Filters() {
   const { typeFilter, param1Filter, param2Filter } = useSelector(selectFilters);
@@ -57,106 +58,121 @@ export default function Filters() {
 
   return (
     <div className='filters-div'>
-      <button
-        type='button'
-        onClick={() => dispatch(turnFiltersWindowOff())}
-      >
-        Close
-      </button>
+      <div className='filters-content'>
+        <div className='window-header-div'>
+          <h2>Choose your filters</h2>
+          <button
+            type='button'
+            className='close-window-btn'
+            onClick={() => dispatch(turnFiltersWindowOff())}
+          >
+            <img className='close-icon' src={closeImg} alt='close' />
+          </button>
+        </div>
+        <div className='filter-option-div'>
+          <h3>Type</h3>
+          <label htmlFor='type1' >
+            <input
+              type='checkbox'
+              className='checkbox-filter'
+              name='type1'
+              value='type1'
+              checked={typesSelected.includes('type1')}
+              onChange={handleCheckType}
+            />
+            Type1
+          </label>
 
-      <div>
-        <h3>Types</h3>
-        <label htmlFor='type1' >
-          <input
-            type='checkbox'
-            name='type1'
-            value='type1'
-            checked={typesSelected.includes('type1')}
-            onChange={handleCheckType}
-          />
-          Type1
-        </label>
+          <label htmlFor='type2' >
+            <input
+              type='checkbox'
+              className='checkbox-filter'
+              name='type2'
+              value='type2'
+              checked={typesSelected.includes('type2')}
+              onChange={handleCheckType}
+            />
+            Type2
+          </label>
 
-        <label htmlFor='type2' >
-          <input
-            type='checkbox'
-            name='type2'
-            value='type2'
-            checked={typesSelected.includes('type2')}
-            onChange={handleCheckType}
-          />
-          Type2
-        </label>
+          <label htmlFor='type3' >
+            <input
+              type='checkbox'
+              className='checkbox-filter'
+              name='type3'
+              value='type3'
+              checked={typesSelected.includes('type3')}
+              onChange={handleCheckType}
+            />
+            Type3
+          </label>
+        </div>
 
-        <label htmlFor='type3' >
-          <input
-            type='checkbox'
-            name='type3'
-            value='type3'
-            checked={typesSelected.includes('type3')}
-            onChange={handleCheckType}
-          />
-          Type3
-        </label>
+        <div className='filter-option-div'>
+          <h3>Param1</h3>
+          <label>
+            Between
+            <input
+              className='filter-input'
+              name='greaterThanNumber'
+              type='text'
+              value={param1Range.greaterThanNumber || ''}
+              onChange={handleChangeParam1}
+            />
+          </label>
+          <label>
+            And
+            <input
+              className='filter-input'
+              name='lessThanNumber'
+              type='text'
+              value={param1Range.lessThanNumber || ''}
+              onChange={handleChangeParam1}
+            />
+          </label>
+        </div>
+
+        <div className='filter-option-div'>
+          <h3>Param2</h3>
+          <label>
+            Between
+            <input
+              className='filter-input'
+              name='greaterThanNumber'
+              type='text'
+              value={param2Range.greaterThanNumber || ''}
+              onChange={handleChangeParam2}
+            />
+          </label>
+          <label>
+            And
+            <input
+              className='filter-input'
+              name='lessThanNumber'
+              type='text'
+              value={param2Range.lessThanNumber || ''}
+              onChange={handleChangeParam2}
+            />
+          </label>
+        </div>
+        <div className='btns-div'>
+          <button
+            type='buttom'
+            className='clear-filters-btn'
+            onClick={() => dispatch(clearFilters())}
+          >
+            Clear Filters
+          </button>
+
+          <button
+            type='button'
+            className='apply-btn'
+            onClick={applyFilters}
+          >
+            Apply
+          </button>
+        </div>
       </div>
-
-      <div>
-        <h3>Param1</h3>
-        <label>
-          Between
-          <input
-            name='greaterThanNumber'
-            type='text'
-            value={param1Range.greaterThanNumber || ''}
-            onChange={handleChangeParam1}
-          />
-        </label>
-        <label>
-          And
-          <input
-            name='lessThanNumber'
-            type='text'
-            value={param1Range.lessThanNumber || ''}
-            onChange={handleChangeParam1}
-          />
-        </label>
-      </div>
-
-      <div>
-        <h3>Param2</h3>
-        <label>
-          Between
-          <input
-            name='greaterThanNumber'
-            type='text'
-            value={param2Range.greaterThanNumber || ''}
-            onChange={handleChangeParam2}
-          />
-        </label>
-        <label>
-          And
-          <input
-            name='lessThanNumber'
-            type='text'
-            value={param2Range.lessThanNumber || ''}
-            onChange={handleChangeParam2}
-          />
-        </label>
-      </div>
-
-      <button
-        type='buttom'
-        onClick={() => dispatch(clearFilters())}
-      >
-        Clear Filters
-      </button>
-
-      <button
-        type='button'
-        onClick={applyFilters}
-      >
-        Apply
-      </button>
     </div>
   )
 }
