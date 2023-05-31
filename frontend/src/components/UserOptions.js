@@ -1,7 +1,7 @@
 import React from 'react';
 import PageSelector from './PageSelector';
 import { useDispatch } from 'react-redux';
-import { logoutUser, setClearTable, turnFiltersWindowOn } from '../redux';
+import { clearFilters, logoutUser, setClearTable, setData, turnFiltersWindowOn } from '../redux';
 import filterBtnImg from '../media/expand.png';
 import '../style/UserOptions.css';
 
@@ -12,6 +12,10 @@ export default function UserOptions() {
     localStorage.removeItem('token');
     localStorage.removeItem('refresh-token');
     dispatch(logoutUser());
+    setTimeout(() => {
+      dispatch(clearFilters());
+      dispatch(setData([]));
+    }, 1000)
   }
 
   return (

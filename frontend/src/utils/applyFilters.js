@@ -24,14 +24,13 @@ export const applyFilters = (data, filters) => {
   // filtro do tipo range para o campo "param2"
   const filterParam2 = filterParam1.filter(({ param2 }) => {
     const { greaterThanNumber, lessThanNumber } = param2Filter;
+
     if (lessThanNumber === null && greaterThanNumber === null) {
       return true;
     }
-
     if (lessThanNumber === null) {
       return param2 > greaterThanNumber;
     }
-
     if (greaterThanNumber === null) {
       return param2 < lessThanNumber;
     }
@@ -39,5 +38,5 @@ export const applyFilters = (data, filters) => {
     return param2 > greaterThanNumber && param2 < lessThanNumber;
   })
 
-  return filterParam2
+  return filterParam2;
 };

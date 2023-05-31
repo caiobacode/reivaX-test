@@ -1,19 +1,21 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const initialState = {
+  showFiltersWindow: false,
+  typeFilter: ['type1', 'type2', 'type3'],
+  param1Filter: {
+    lessThanNumber: null,
+    greaterThanNumber: null
+  },
+  param2Filter: {
+    lessThanNumber: null,
+    greaterThanNumber: null
+  }
+};
+
 export const slice = createSlice({
   name: 'filters',
-  initialState: {
-    showFiltersWindow: false,
-    typeFilter: ['type1', 'type2', 'type3'],
-    param1Filter: {
-      lessThanNumber: null,
-      greaterThanNumber: null
-    },
-    param2Filter: {
-      lessThanNumber: null,
-      greaterThanNumber: null
-    }
-  },
+  initialState: initialState,
   reducers: {
     turnFiltersWindowOn (state, { payload }) {
       return { ...state, showFiltersWindow: true};
@@ -22,12 +24,15 @@ export const slice = createSlice({
       return { ...state, showFiltersWindow: false};
     },
     applyNewFilters (state, { payload }) {
-      return { ...state, ...payload }
+      return { ...state, ...payload };
+    },
+    clearFilters () {
+      return initialState;
     }
   }
 });
 
-export const { turnFiltersWindowOn, turnFiltersWindowOff, applyNewFilters } = slice.actions;
+export const { turnFiltersWindowOn, turnFiltersWindowOff, applyNewFilters, clearFilters } = slice.actions;
 
 export const selectFilters = state => state.filters;
 

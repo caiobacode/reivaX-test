@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import '../style/Filters.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { changePage, turnFiltersWindowOff } from '../redux';
-import { applyNewFilters, selectFilters } from '../redux/filtersSlice';
+import { applyNewFilters, clearFilters, selectFilters } from '../redux/filtersSlice';
 
 export default function Filters() {
   const { typeFilter, param1Filter, param2Filter } = useSelector(selectFilters);
@@ -143,6 +143,13 @@ export default function Filters() {
           />
         </label>
       </div>
+
+      <button
+        type='buttom'
+        onClick={() => dispatch(clearFilters())}
+      >
+        Clear Filters
+      </button>
 
       <button
         type='button'
