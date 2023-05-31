@@ -1,0 +1,51 @@
+.user-options-div {
+  width: 800px;
+  height: 100px;
+  margin-top: 50px;
+  background-color: #333333;
+  display: flex;
+
+}
+
+.logout-clear-btns-div {
+  width: 65%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.page-delector-div {
+  width: 35%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.change-page-span {
+  font-size: 16px;
+  font-family: semiboldFont;
+  color: white;
+}
+
+.user-options-btn {
+  width: 170px;
+  font-size: 16px;
+  font-family: boldFont;
+  height: 40px;
+  border: none;
+  cursor: pointer;
+  border-radius: 50px;
+  color: white;
+  background-color: #D30D33;
+  transition: 150ms ease-in-out;
+}
+
+.user-options-btn:not([disabled]):hover {
+  transform: scale(1.05);
+}
+
+.user-options-btn:disabled {
+  opacity: 0.4;
+  cursor: auto;
+}

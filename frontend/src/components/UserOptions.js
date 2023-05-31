@@ -2,6 +2,7 @@ import React from 'react';
 import PageSelector from './PageSelector';
 import { useDispatch } from 'react-redux';
 import { logoutUser, setClearTable } from '../redux';
+import '../style/UserOptions.css'
 
 export default function UserOptions() {
   const dispatch = useDispatch();
@@ -13,21 +14,27 @@ export default function UserOptions() {
   }
 
   return (
-    <div>
-      <button
-        type='button'
-        onClick={() => dispatch(setClearTable(true))}
-      >
-        Clear
-      </button>
-      
-      <button
-        type='button'
-        onClick={handleLogout}
-      >
-        Logout
-      </button>
-      <PageSelector/>
+    <div className='user-options-div'>
+      <div className='logout-clear-btns-div'>
+        <button
+          type='button'
+          className='user-options-btn'
+          onClick={() => dispatch(setClearTable(true))}
+        >
+         Clear
+        </button>
+        <button
+          type='button'
+          className='user-options-btn'
+          onClick={handleLogout}
+        >
+          Logout
+        </button>
+      </div>
+      <div className='page-delector-div'>
+        <span className='change-page-span'>Change page</span>
+        <PageSelector/>
+      </div>
     </div>
   )
 }

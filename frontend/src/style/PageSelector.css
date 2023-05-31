@@ -1,0 +1,36 @@
+.page-selector {
+  width: 90px;
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.change-page-btn {
+  padding: 5px;
+  border-radius: 25px;
+  background: #D30D33;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  transition: 150ms ease-in-out;
+}
+
+.change-page-btn:disabled {
+  opacity: 0.4;
+}
+
+.change-page-btn:not([disabled]):hover {
+  background-color: #f12750;
+}
+
+.change-page-btn-img {
+  width: 20px;
+}
+
+.actual-page-span {
+  font-size: 20px;
+  font-family: semiboldFont;
+  color: white;
+}
