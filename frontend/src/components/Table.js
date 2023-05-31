@@ -1,12 +1,15 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { selectTable } from '../redux/tableSlice';
-import { formatDate, getDataFromActualPage } from '../utils';
+import { selectTable, selectFilters } from '../redux';
+import { applyFilters, formatDate, getDataFromActualPage } from '../utils';
 import '../style/Table.css'
 
 export default function Table() {
   const { data, actualPage } = useSelector(selectTable);
-  const dataFromActualPage = getDataFromActualPage(data, actualPage);
+  const filters = useSelector(selectFilters);
+
+  const dataFiltered = applyFilters(data, filters);
+  const dataFromActualPage = getDataFromActualPage(dataFiltered, actualPage);
   return (
     <table className='content-table'>
       <thead>

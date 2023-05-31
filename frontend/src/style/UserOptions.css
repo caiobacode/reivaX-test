@@ -8,14 +8,14 @@
 }
 
 .logout-clear-btns-div {
-  width: 65%;
+  width: 75%;
   display: flex;
   align-items: center;
   justify-content: space-around;
 }
 
 .page-selector-div {
-  width: 35%;
+  width: 25%;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -34,11 +34,19 @@
   font-family: boldFont;
   height: 40px;
   border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   border-radius: 50px;
   color: white;
   background-color: #D30D33;
   transition: 150ms ease-in-out;
+}
+
+.filters-btn-img {
+  margin-left: 20px;
+  width: 18px;
 }
 
 .user-options-btn:not([disabled]):hover {
@@ -68,5 +76,9 @@
   }
   .change-page-span {
     font-size: 12px;
+  }
+  .filters-btn-img {
+    margin-left: 5px;
+    width: 15px;
   }
 }

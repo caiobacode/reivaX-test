@@ -1,8 +1,9 @@
 import React from 'react';
 import PageSelector from './PageSelector';
 import { useDispatch } from 'react-redux';
-import { logoutUser, setClearTable } from '../redux';
-import '../style/UserOptions.css'
+import { logoutUser, setClearTable, turnFiltersWindowOn } from '../redux';
+import filterBtnImg from '../media/expand.png';
+import '../style/UserOptions.css';
 
 export default function UserOptions() {
   const dispatch = useDispatch();
@@ -29,6 +30,14 @@ export default function UserOptions() {
           onClick={handleLogout}
         >
           Logout
+        </button>
+        <button
+          type='button'
+          className='user-options-btn'
+          onClick={() => dispatch(turnFiltersWindowOn())}
+        >
+          Filters
+          <img className='filters-btn-img' alt='filters-btn-img' src={filterBtnImg}/>
         </button>
       </div>
       <div className='page-selector-div'>

@@ -1,0 +1,7 @@
+.filters-div {
+  width: 50vw;
+  height: 50vh;
+  position: absolute;
+  background-color: antiquewhite;
+  z-index: 1;
+}
