@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { selectTable } from '../redux/tableSlice';
-import { getDataFromActualPage } from '../utils';
+import { formatDate, getDataFromActualPage } from '../utils';
 import '../style/Table.css'
 
 export default function Table() {
@@ -12,8 +12,8 @@ export default function Table() {
       <thead>
         <tr>
           <th>Type</th>
-          <th>Param1</th>
-          <th>Param2</th>
+          <th>Param 1</th>
+          <th>Param 2</th>
           <th>Date</th>
         </tr>
       </thead>
@@ -25,7 +25,7 @@ export default function Table() {
                 <td className='type-td'>{d.type}</td>
                 <td>{d.param1}</td>
                 <td>{d.param2}</td>
-                <td>{d.timestamp}</td>
+                <td>{formatDate(d.timestamp)}</td>
               </tr>
             )
           })
