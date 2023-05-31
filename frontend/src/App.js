@@ -5,6 +5,7 @@ import io from 'socket.io-client';
 import { Login, Home } from './pages';
 import { selectUser, setData, selectTable, setClearTable, changePage } from './redux';
 import { getLocalStorage, setLocalStorage, validateAccessToken, validateRefreshToken } from './utils';
+import './style/App.css'
 
 const App = () => {
   const dispatch = useDispatch();
