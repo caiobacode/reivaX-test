@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectTable, selectFilters, setFilteredDataLength } from '../redux';
 import { applyFilters, formatDate, getDataFromActualPage } from '../utils';
-import '../style/Table.css'
+import '../style/Table.css';
 
 export default function Table() {
   const { data, actualPage, filteredDataLength } = useSelector(selectTable);
@@ -16,12 +16,12 @@ export default function Table() {
   useEffect(() => {
     // colocamos esse "if" para evitar loops
     if (filteredDataLength !== dataFiltered.length) {
-      dispatch(setFilteredDataLength(dataFiltered.length))
+      dispatch(setFilteredDataLength(dataFiltered.length));
     }
-  }, [dataFiltered, filteredDataLength, dispatch])
+  }, [dataFiltered, filteredDataLength, dispatch]);
 
   return (
-    <table className='content-table'>
+    <table className="content-table">
       <thead>
         <tr>
           <th>Type</th>
@@ -32,18 +32,17 @@ export default function Table() {
       </thead>
       <tbody>
         {
-          dataFromActualPage?.map((d, index) => {
-            return (
-              <tr key={index}>
-                <td className='type-td'>{d.type}</td>
-                <td>{d.param1}</td>
-                <td>{d.param2}</td>
-                <td>{formatDate(d.timestamp)}</td>
-              </tr>
-            )
-          })
+          dataFromActualPage?.map((d, index) => (
+            // eslint-disable-next-line react/no-array-index-key
+            <tr key={index}>
+              <td className="type-td">{d.type}</td>
+              <td>{d.param1}</td>
+              <td>{d.param2}</td>
+              <td>{formatDate(d.timestamp)}</td>
+            </tr>
+          ))
         }
       </tbody>
     </table>
   );
-};
+}
