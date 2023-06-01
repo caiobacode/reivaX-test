@@ -1,4 +1,4 @@
-export const applyFilters = (data, filters) => {
+export default function applyFilters(data, filters) {
   const { typeFilter, param1Filter, param2Filter } = filters;
 
   // filtra por "type"
@@ -19,7 +19,7 @@ export const applyFilters = (data, filters) => {
     }
 
     return param1 > greaterThanNumber && param1 < lessThanNumber;
-  })
+  });
 
   // filtro do tipo range para o campo "param2"
   const filterParam2 = filterParam1.filter(({ param2 }) => {
@@ -36,7 +36,7 @@ export const applyFilters = (data, filters) => {
     }
 
     return param2 > greaterThanNumber && param2 < lessThanNumber;
-  })
+  });
 
   return filterParam2;
-};
+}
