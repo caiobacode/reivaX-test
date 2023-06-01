@@ -3,7 +3,7 @@ import '../style/Filters.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { changePage, turnFiltersWindowOff } from '../redux';
 import { applyNewFilters, clearFilters, selectFilters } from '../redux/filtersSlice';
-import closeImg from '../media/close.png';
+import closeImg from '../images/close.png';
 
 export default function Filters() {
   const { typeFilter, param1Filter, param2Filter } = useSelector(selectFilters);

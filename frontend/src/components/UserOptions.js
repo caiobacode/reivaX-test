@@ -9,7 +9,7 @@ import {
   turnFiltersWindowOn,
 } from '../redux';
 import '../style/UserOptions.css';
-import filterBtnImg from '../media/expand.png';
+import filterBtnImg from '../images/expand.png';
 
 export default function UserOptions() {
   const dispatch = useDispatch();

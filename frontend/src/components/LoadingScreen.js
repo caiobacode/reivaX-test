@@ -2,7 +2,7 @@ import React from 'react';
 import '../style/LoadingScreen.css';
 import { useSelector } from 'react-redux';
 import { selectLoadingScreen } from '../redux';
-import reivaxImg from '../media/reivax.png';
+import reivaxImg from '../images/reivax.png';
 
 export default function LoadingScreen() {
   const isEnable = useSelector(selectLoadingScreen);

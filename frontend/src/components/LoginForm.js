@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { loginUser } from '../redux';
-import reivaxLogo from '../media/reivax.png';
+import reivaxLogo from '../images/reivax.png';
 
 export default function LoginForm() {
   const [username, setUsername] = useState('');

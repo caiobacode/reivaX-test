@@ -1,8 +1,8 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { changePage, selectTable } from '../redux';
-import previousImg from '../media/previous.png';
-import nextImg from '../media/next.png';
+import previousImg from '../images/previous.png';
+import nextImg from '../images/next.png';
 import '../style/PageSelector.css';
 
 export default function PageSelector() {
