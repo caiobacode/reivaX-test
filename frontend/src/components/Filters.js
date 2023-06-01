@@ -1,4 +1,3 @@
-/* eslint-disable no-restricted-globals */
 import React, { useState } from 'react';
 import '../style/Filters.css';
 import { useDispatch, useSelector } from 'react-redux';

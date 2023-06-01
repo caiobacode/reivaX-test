@@ -19,6 +19,7 @@
     "rules": {
         "react/jsx-filename-extension": "off",
         "no-restricted-globals": "off",
-        "react/no-array-index-key": "off"
+        "react/no-array-index-key": "off",
+        "camelcase": "off"
     }
 }
