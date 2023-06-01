@@ -1,20 +1,20 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 export const slice = createSlice({
   name: 'loadingScreen',
   initialState: true,
   reducers: {
-    turnOnLoadingScreen (state, { payload }) {
+    turnOnLoadingScreen() {
       return true;
     },
-    turnOffLoadingScreen (state, { payload }) {
+    turnOffLoadingScreen() {
       return false;
-    }
-  }
+    },
+  },
 });
 
 export const { turnOnLoadingScreen, turnOffLoadingScreen } = slice.actions;
 
-export const selectLoadingScreen= state => state.loadingScreen;
+export const selectLoadingScreen = (state) => state.loadingScreen;
 
 export default slice.reducer;

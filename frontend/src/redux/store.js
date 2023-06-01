@@ -10,5 +10,5 @@ export default configureStore({
     table: tableReducer,
     loadingScreen: loadingScreenReducer,
     filters: filtersReducer,
-  }
+  },
 });

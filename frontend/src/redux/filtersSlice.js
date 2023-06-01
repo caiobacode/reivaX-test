@@ -1,39 +1,41 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   showFiltersWindow: false,
   typeFilter: ['type1', 'type2', 'type3'],
   param1Filter: {
     lessThanNumber: null,
-    greaterThanNumber: null
+    greaterThanNumber: null,
   },
   param2Filter: {
     lessThanNumber: null,
-    greaterThanNumber: null
-  }
+    greaterThanNumber: null,
+  },
 };
 
 export const slice = createSlice({
   name: 'filters',
-  initialState: initialState,
+  initialState,
   reducers: {
-    turnFiltersWindowOn (state, { payload }) {
-      return { ...state, showFiltersWindow: true};
+    turnFiltersWindowOn(state) {
+      return { ...state, showFiltersWindow: true };
     },
-    turnFiltersWindowOff (state, { payload }) {
-      return { ...state, showFiltersWindow: false};
+    turnFiltersWindowOff(state) {
+      return { ...state, showFiltersWindow: false };
     },
-    applyNewFilters (state, { payload }) {
+    applyNewFilters(state, { payload }) {
       return { ...state, ...payload };
     },
-    clearFilters () {
+    clearFilters() {
       return initialState;
-    }
-  }
+    },
+  },
 });
 
-export const { turnFiltersWindowOn, turnFiltersWindowOff, applyNewFilters, clearFilters } = slice.actions;
+export const {
+  turnFiltersWindowOn, turnFiltersWindowOff, applyNewFilters, clearFilters,
+} = slice.actions;
 
-export const selectFilters = state => state.filters;
+export const selectFilters = (state) => state.filters;
 
 export default slice.reducer;
