@@ -7,17 +7,17 @@ export const slice = createSlice({
     password: '',
   },
   reducers: {
-    loginUser (state, { payload }) {
+    loginUser(state, { payload }) {
       return { ...state, ...payload };
     },
-    logoutUser () { 
-      return { username: '', password: '' }; 
-    }
-  }
+    logoutUser() {
+      return { username: '', password: '' };
+    },
+  },
 });
 
 export const { loginUser, setUserToConnected, logoutUser } = slice.actions;
 
-export const selectUser = state => state.user;
+export const selectUser = (state) => state.user;
 
 export default slice.reducer;

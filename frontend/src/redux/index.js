@@ -1,13 +1,24 @@
-import { setData, changePage, setClearTable, selectTable, setFilteredDataLength } from "./tableSlice";
-import { loginUser, logoutUser, setUserToConnected, selectUser } from "./userSlice";
-import { turnOnLoadingScreen, turnOffLoadingScreen, selectLoadingScreen } from "./loadingScreenSlice";
-import { turnFiltersWindowOn, turnFiltersWindowOff, applyNewFilters, clearFilters, selectFilters } from "./filtersSlice";
+import {
+  setData, changePage, setClearTable, selectTable, setFilteredDataLength,
+} from './tableSlice';
 
-export { 
-  loginUser, 
-  logoutUser, 
-  setUserToConnected, 
-  setData, 
+import {
+  loginUser, logoutUser, setUserToConnected, selectUser,
+} from './userSlice';
+
+import {
+  turnOnLoadingScreen, turnOffLoadingScreen, selectLoadingScreen,
+} from './loadingScreenSlice';
+
+import {
+  turnFiltersWindowOn, turnFiltersWindowOff, applyNewFilters, clearFilters, selectFilters,
+} from './filtersSlice';
+
+export {
+  loginUser,
+  logoutUser,
+  setUserToConnected,
+  setData,
   setFilteredDataLength,
   changePage,
   setClearTable,
@@ -20,5 +31,5 @@ export {
   selectTable,
   selectUser,
   selectLoadingScreen,
-  selectFilters
+  selectFilters,
 };

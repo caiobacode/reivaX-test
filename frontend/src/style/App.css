@@ -6,20 +6,20 @@ body {
 
 @font-face {
   font-family: boldFont;
-  src: url('../media/bold.ttf');
+  src: url('../fonts/bold.ttf');
 }
 
 @font-face {
   font-family: regularFont;
-  src: url('../media/regular.ttf');
+  src: url('../fonts/regular.ttf');
 }
 
 @font-face {
   font-family: semiboldFont;
-  src: url('../media/semibold.ttf');
+  src: url('../fonts/semibold.ttf');
 }
 
 @font-face {
   font-family: lightFont;
-  src: url('../media/light.ttf');
+  src: url('../fonts/light.ttf');
 }
