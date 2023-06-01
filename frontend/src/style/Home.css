@@ -1,0 +1,21 @@
+.home-div {
+  background: wheat;
+  width: 100vw;
+  height: auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(to top right, #f12750, #600618);
+}
+
+.home-content {
+  width: 100vw;
+  height: auto;
+  min-height: 100vh;
+  max-width: 1100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(to bottom right, #333333, #0d0d0d);
+}

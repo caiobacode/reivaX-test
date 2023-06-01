@@ -1,0 +1,85 @@
+.login-div {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to top right, #f12750, #600618);
+}
+
+.login-form-div {
+  width: 350px;
+  height: 450px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #FFFFFF;
+  border-radius: 22px;
+}
+
+.reivax-logo {
+  margin-top: 45px;
+  height: 100px;
+}
+
+.input-label {
+  margin-top: 15px;
+  font-size: 16px;
+  font-family: semiboldFont;
+}
+
+.login-input {
+  margin-top: 5px;
+  width: 200px;
+  font-size: 14px;
+  font-family: regularFont;
+  height: 30px;
+  border: #a6a6a6 solid 1px;
+  border-radius: 5px;
+  transition: 150ms ease-in-out;
+}
+
+.login-input:hover {
+  border: #f66f8a solid 1px;
+  outline: none;
+}
+
+.login-input:focus {
+  border: #D30D33 solid 1px;
+  outline: none;
+}
+
+.error-message-div {
+  margin-top: 15px;
+  box-sizing: border-box;
+  padding: 20px;
+  font-family: regularFont;
+  color: #ff0000;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-btn {
+  width: 170px;
+  font-size: 16px;
+  font-family: boldFont;
+  height: 40px;
+  margin-top: 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 50px;
+  color: white;
+  background-color: #D30D33;
+  transition: 150ms ease-in-out;
+}
+
+.login-btn:not([disabled]):hover {
+  transform: scale(1.05);
+}
+
+.login-btn:disabled {
+  opacity: 0.4;
+  cursor: auto;
+}

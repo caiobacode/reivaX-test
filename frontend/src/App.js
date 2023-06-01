@@ -3,61 +3,77 @@ import { Route, Routes, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import io from 'socket.io-client';
 import { Login, Home } from './pages';
-import { selectUser, setData, selectTable, setClearTable, changePage } from './redux';
+import { LoadingScreen } from './components';
+
+import { 
+  setData, 
+  setClearTable, 
+  changePage, 
+  turnOffLoadingScreen, 
+  turnOnLoadingScreen, 
+  selectUser, 
+  selectTable,
+} from './redux';
+
 import { getLocalStorage, setLocalStorage, validateAccessToken, validateRefreshToken } from './utils';
+import './style/App.css'
 
 const App = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const user = useSelector(selectUser);
-  const { clearTable } = useSelector(selectTable)
+  const { clearTable } = useSelector(selectTable);
 
   useEffect(() => {
     const socket = io('http://localhost:5000/api', {
-    extraHeaders: {
-      'X-Username': user.username,
-      'X-Password': user.password
-    }
+      extraHeaders: {
+        'X-Username': user.username,
+        'X-Password': user.password
+      }
     });
 
-    // função para verificar se o usuario ja esta logado ao entrar no site
-    function verifyTokens() {
-      const isValid = validateRefreshToken(user, dispatch);
+    function verifyAuthentication() {
+      const isTokenValid = validateRefreshToken(user, dispatch);
       const actualRoute = window.location.pathname;
-      if (isValid && actualRoute !== '/home') {
-        navigate('/home');
+      if (isTokenValid && actualRoute !== '/home') {
+        dispatch(turnOnLoadingScreen());
+        setTimeout(() => {
+          navigate('/home');
+        }, 500)
       } 
-      if (!isValid && actualRoute === '/home') {
-        navigate('/login');
+      if (!isTokenValid && actualRoute === '/home') {
+        dispatch(turnOnLoadingScreen());
+        setTimeout(() => {
+          navigate('/login');
+        }, 500)
       }
+      setTimeout(() => {
+        dispatch(turnOffLoadingScreen());
+      }, 1000)
     }
 
     // temos que colocar um delay pequeno, se não nós não conseguimos logar
     setTimeout(() => {
-      verifyTokens();
-    }, 100) 
+      verifyAuthentication();
+    }, 100)
     
-    // gera tokens e armazena no localStorage somente se não existir um token valido
-    socket.on('credentials', (data) => {
+    socket.on('credentials', ({ access_token, refresh_token }) => {
       if (!validateAccessToken()) {
-        setLocalStorage('token', data.access_token);
-        setLocalStorage('refresh-token', data.refresh_token);
+        setLocalStorage('token', access_token);
+        setLocalStorage('refresh-token', refresh_token);
       }
     });
 
-    // atende evento "data" e armazena os dados no estado do redux
     socket.on('data', (data) => {
       dispatch(setData(data));
     });
 
-    /* quando o usuario apertar o botao "clear", o boleano clearTable
-    passa a ser true, assim emitindo o comando "clear" para o servidor*/
     if (clearTable === true) {
       const token = getLocalStorage('token', false);
-      socket.emit('clear', { token }, (response) => {
+      socket.emit('clear', { token }, () => {
         dispatch(setData([]));
-        dispatch(changePage(1))
+        dispatch(changePage(1));
         dispatch(setClearTable(false));
       });
     }
@@ -65,10 +81,10 @@ const App = () => {
     // a cada 450 segundos, envia-se uma requisicao para atualizar os tokens
     const interval = setInterval(() => {
       let refreshToken = getLocalStorage('refresh-token', false)
-      socket.emit('refresh_tokens', { token: refreshToken }, (response) => {
-        refreshToken = response.refresh_token;
-        setLocalStorage('token', response.access_token);
-        setLocalStorage('refresh-token', response.refresh_token)
+      socket.emit('refresh_tokens', { token: refreshToken }, ({ access_token, refresh_token }) => {
+        refreshToken = refresh_token;
+        setLocalStorage('token', access_token);
+        setLocalStorage('refresh-token', refresh_token);
       });
     }, 450000);
 
@@ -80,11 +96,14 @@ const App = () => {
   }, [user, clearTable]);
 
   return (
-    <Routes>
-      <Route Component={Login} exact path='/'></Route>
-      <Route Component={Login} path='/login'></Route>
-      <Route Component={Home} path='/home'></Route>
-    </Routes>
+    <div>
+      <LoadingScreen />
+      <Routes>
+        <Route Component={Login} exact path='/'></Route>
+        <Route Component={Login} path='/login'></Route>
+        <Route Component={Home} path='/home'></Route>
+      </Routes>
+    </div>
   );
 }
 

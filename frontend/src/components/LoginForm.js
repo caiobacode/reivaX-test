@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { loginUser } from '../redux';
+import reivaxLogo from '../media/reivax.png'
 
 export default function LoginForm() {
   const [username, setUsername] = useState('');
@@ -22,9 +23,16 @@ export default function LoginForm() {
   };
 
   return (
-    <div>
-      <label htmlFor='username'>Username:</label>
+    <div className='login-form-div'>
+      <img className='reivax-logo' src={ reivaxLogo } alt='reivax-logo'/>
+      <div className='error-message-div'>
+        {
+          showErrorMessage && <span>Invalid username or password.</span>
+        }
+      </div>
+      <label className='input-label' htmlFor='username'>Username</label>
       <input
+        className='login-input'
         type='text'
         value={username}
         onChange={({target: {value}}) => { 
@@ -33,8 +41,9 @@ export default function LoginForm() {
         }}
       />
 
-      <label htmlFor='password'>Password:</label>
+      <label className='input-label' htmlFor='password'>Password</label>
       <input
+        className='login-input'
         type='text'
         value={password}
         onChange={({target: {value}}) => {
@@ -42,13 +51,9 @@ export default function LoginForm() {
           setShowErrorMessage(false);
         }}
       />
-      <div>
-        {
-          showErrorMessage && <span>Invalid username or password.</span>
-        }
-      </div>
       <button
         type='button'
+        className='login-btn'
         disabled={username === '' || password === ''}
         onClick={handleClick}
       >
