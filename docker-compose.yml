@@ -23,8 +23,6 @@ services:
       context: .
       dockerfile: frontend.Dockerfile
     container_name: $FRONTEND_CONTAINER
-    volumes:
-      - ./frontend:/usr/src/app
     ports:
       - 3000:3000
     depends_on:
