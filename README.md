@@ -7,12 +7,12 @@
 <p>This application was developed as a challenge for a selection process, which I passed!!!. In it, you can enter your username and password and see in real time each update coming from the backend, through web sockets (Socket.io), and filter by range and type.</p>
 
 ## 💻 Tecnologies used
-> [![CSS3][CSS3]][CSS3-url]
-[![REACT][REACT]][REACT-url]
+> [![REACT][REACT]][REACT-url]
 [![REDUX][REDUX]][REDUX-url]
 [![SOCKET.IO][SOCKET.IO]][SOCKET.IO-url]
 [![Docker][Docker]][Docker-url]
 [![ESLINT.js][ESLINT]][ESLINT-url]
+[![CSS3][CSS3]][CSS3-url]
 
 ## 🛠️ Instructions
 
